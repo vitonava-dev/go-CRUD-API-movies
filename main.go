@@ -13,6 +13,7 @@ type Movie struct {
 	Isbn     string    `json:"isbn"`
 	Title    string    `json:"title"`
 	Director *Director `json:"director"`
+	Status   bool      `json:"status"`
 }
 
 type Director struct {
@@ -20,12 +21,12 @@ type Director struct {
 	Lastname  string `json:"lastname"`
 }
 
-var movies []Movie
+var movies []*Movie
 
 func main() {
 
-	movies = append(movies, Movie{ID: "1", Isbn: "438227", Title: "Movie One", Director: &Director{Firstname: "John", Lastname: "Doe"}})
-	movies = append(movies, Movie{ID: "2", Isbn: "45455", Title: "Movie Two", Director: &Director{Firstname: "Steve", Lastname: "Smith"}})
+	movies = append(movies, &Movie{ID: "1", Isbn: "438227", Title: "Movie One", Director: &Director{Firstname: "John", Lastname: "Doe"}, Status: true})
+	movies = append(movies, &Movie{ID: "2", Isbn: "45455", Title: "Movie Two", Director: &Director{Firstname: "Steve", Lastname: "Smith"}, Status: true})
 
 	r := mux.NewRouter()
 
